@@ -29,6 +29,9 @@ const EditTodo: React.FC = () => {
       });
     }
   };
+  const cancel = () => {
+    navigate("/");
+  };
 
   return (
     <Container maxWidth="sm">
@@ -59,9 +62,19 @@ const EditTodo: React.FC = () => {
               multiline
               rows={4}
             />
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
+            <div style={{ display: "flex", gap: 5, justifyContent: "center" }}>
+              <Button type="submit" variant="contained" color="primary">
+                Save
+              </Button>
+              <Button
+                type="button"
+                variant="contained"
+                color="secondary"
+                onClick={cancel}
+              >
+                Cancel
+              </Button>
+            </div>
           </form>
         </>
       )}

@@ -5,13 +5,14 @@ import {
   ListItemText,
   IconButton,
   Checkbox,
+  Typography,
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 import Todo from "../types/Todo";
 import { useTodoContext } from "../contexts/TodoContext";
 import { useNavigate } from "react-router-dom";
 const TodoList: React.FC = () => {
-  const { todos, removeTodo, editTodo, loading } = useTodoContext();
+  const { todos, removeTodo, editTodo } = useTodoContext();
   const navigate = useNavigate();
   const finished = todos.reduce(
     (acc, cur) => (cur.completed ? acc + 1 : acc),
@@ -23,10 +24,12 @@ const TodoList: React.FC = () => {
 
   return (
     <div>
-      <h1>Todo List</h1>
-      <h2>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Todo List
+      </Typography>
+      <Typography variant="h5" component="h2" gutterBottom>
         Completed: {finished} / {todos.length}
-      </h2>
+      </Typography>
       <List>
         {todos.map((todo: Todo) => (
           <ListItem
