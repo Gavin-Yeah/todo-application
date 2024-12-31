@@ -15,9 +15,6 @@ todoRouter.post("/", createTodo);
 // Get all todos
 todoRouter.get("/", getTodos);
 
-// Get a single todo by ID
-todoRouter.get("/:id", getTodoById);
-
 // Update a todo by ID
 todoRouter.put("/:id", updateTodo);
 

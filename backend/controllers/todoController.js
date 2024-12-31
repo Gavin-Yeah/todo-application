@@ -27,16 +27,6 @@ const updateTodo = async (req, res) => {
   }
 };
 
-const getTodoById = async (req, res) => {
-  try {
-    const todo = await Todo.findById(req.params.id);
-    if (!todo) return res.status(404).json({ message: "Todo not found" });
-    res.json(todo);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
 const getTodos = async (req, res) => {
   try {
     const todos = await Todo.find();
@@ -62,7 +52,6 @@ const createTodo = async (req, res) => {
 };
 
 module.exports = {
-  getTodoById,
   getTodos,
   updateTodo,
   deleteTodo,

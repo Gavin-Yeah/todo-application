@@ -8,6 +8,7 @@ const EditTodo: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { editTodo, getTodo, loading } = useTodoContext();
   const [todo, setTodo] = useState<Todo>(getTodo(id as string));
+
   useEffect(() => {
     setTodo(getTodo(id as string));
   }, [getTodo, id]);
@@ -43,6 +44,7 @@ const EditTodo: React.FC = () => {
               label="Title"
               name="title"
               value={todo.title}
+              required
               onChange={handleInputChange}
               fullWidth
               margin="normal"

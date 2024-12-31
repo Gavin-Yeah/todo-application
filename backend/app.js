@@ -9,6 +9,7 @@ var app = express();
 app.use(
   cors({
     origin: "http://localhost:5173",
+    maxAge: 72000,
   })
 );
 app.use(logger("dev"));
@@ -17,6 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api/todo", todoRouter);
+app.use("/api/tasks", todoRouter);
 
 module.exports = app;

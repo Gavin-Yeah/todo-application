@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TodoContext } from "../contexts/TodoContext";
 import { ReactNode } from "react";
 import Todo, { TodoContent } from "../types/Todo";
+
 const baseUrl = "http://localhost:3000";
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -12,7 +13,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const getTodos = async () => {
     setLoading(true);
-    fetch(baseUrl + "/api/todo")
+    fetch(baseUrl + "/api/tasks")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -35,7 +36,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const addTodo = async (todoContent: TodoContent) => {
     setLoading(true);
-    fetch(baseUrl + "/api/todo", {
+    fetch(baseUrl + "/api/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,12 +61,15 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       });
   };
-  const getTodo = (id: string) => {
-    return todos.find((todo) => todo._id === id) as Todo;
-  };
+  const getTodo = useCallback(
+    (id: string) => {
+      return todos.find((todo) => todo._id === id) as Todo;
+    },
+    [todos]
+  );
   const editTodo = async (id: string, updatedTodo: Todo) => {
     setLoading(true);
-    fetch(baseUrl + `/api/todo/${id}`, {
+    fetch(baseUrl + `/api/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +94,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   };
   const removeTodo = async (id: string) => {
     setLoading(true);
-    fetch(baseUrl + `/api/todo/${id}`, {
+    fetch(baseUrl + `/api/tasks/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
