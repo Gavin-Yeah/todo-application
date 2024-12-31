@@ -12,7 +12,6 @@ const AddTodo: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Add your submit logic here
     addTodo(todo).then(() => {
       setTodo({ title: "", description: "" });
     });

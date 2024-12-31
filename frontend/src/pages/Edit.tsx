@@ -23,7 +23,6 @@ const EditTodo: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (id) {
-      // Update the todo item by id
       editTodo(id, todo).then(() => {
         navigate("/");
       });

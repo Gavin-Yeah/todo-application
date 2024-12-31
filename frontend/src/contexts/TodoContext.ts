@@ -1,7 +1,6 @@
 import { createContext, useContext } from "react";
 import Todo, { TodoContent } from "../types/Todo";
 
-// Create a context for the todo
 interface TodoContextType {
   todos: Todo[];
   getTodo: (id: string) => Todo;

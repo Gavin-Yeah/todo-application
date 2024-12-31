@@ -3,7 +3,7 @@ import { TodoContext } from "../contexts/TodoContext";
 import { ReactNode } from "react";
 import Todo, { TodoContent } from "../types/Todo";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3000/api";
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const getTodos = async () => {
     setLoading(true);
-    fetch(baseUrl + "/api/tasks")
+    fetch(baseUrl + "/todo")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -36,7 +36,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const addTodo = async (todoContent: TodoContent) => {
     setLoading(true);
-    fetch(baseUrl + "/api/tasks", {
+    fetch(baseUrl + "/todo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   );
   const editTodo = async (id: string, updatedTodo: Todo) => {
     setLoading(true);
-    fetch(baseUrl + `/api/tasks/${id}`, {
+    fetch(baseUrl + `/todo/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -94,7 +94,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   };
   const removeTodo = async (id: string) => {
     setLoading(true);
-    fetch(baseUrl + `/api/tasks/${id}`, {
+    fetch(baseUrl + `/todo/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
