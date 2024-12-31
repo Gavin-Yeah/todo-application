@@ -4,7 +4,7 @@
 
 ### summary
 
-1. use mongoDB and mongoose for database management
+1. Use mongoDB and mongoose for database management
 2. Use Express.js to create RESTful routes.
 3. Use CORS middleware to allow frontend-backend communication.
 
@@ -58,8 +58,9 @@ app.js  // set up express server and use cors
 
 1. use vite for the frontend
 2. use fetch to make API calls
-3. use Context API for state management due to small scale
-4. use React Router for navigation (Home and Todo edit pages)
+3. use material UI to style
+4. use Context API for state management due to small scale
+5. use React Router for navigation (Home and Todo edit pages)
 
 ### setup
 
